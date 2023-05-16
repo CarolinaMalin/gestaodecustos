@@ -1,23 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
 
 function App() {
+  const [custo, setCusto] = useState();
+  const [tipo, setTipo] = useState('');
+  const [preco, setPreco] = useState();
+  const [quantidade, setQuantidade] = useState();
+  const [receitas, setReceitas] = useState([]);
+
+  const adicionarReceita = () => {
+    const novaReceita = { tipo, receita: preco * quantidade };
+    setReceitas([...receitas, novaReceita]);
+    setTipo('');
+    setPreco(0);
+    setQuantidade(0);
+  };
+
+  const calcularReceitaTotal = () => {
+    return receitas.reduce((total, receita) => total + receita.receita, 0);
+  };
+
+  const calcularReceitaNecessaria = () => {
+    const total = calcularReceitaTotal();
+    return custo - total;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <div style={{background: 'green', display:'flex', flexDirection:'row', justifyContent: 'center'}}>
+        <h1>Eventos.com : Calculamos seu evento</h1>
+        <label>
+          Custo do Evento:
+          <input type="number" value={custo} onChange={(e) => setCusto(Number(e.target.value))} />
+        </label>
+        <br />
+        <label>
+          Tipo de Receita:
+          <input type="text" value={tipo} onChange={(e) => setTipo(e.target.value)} />
+        </label>
+        <br />
+        <label>
+          Preço Unitário:
+          <input type="number" value={preco} onChange={(e) => setPreco(Number(e.target.value))} />
+        </label>
+        <br />
+        <label>
+          Quantidade:
+          <input type="number" value={quantidade} onChange={(e) => setQuantidade(Number(e.target.value))} />
+        </label>
+        <br />
+        <button onClick={adicionarReceita}>Adicionar Receita</button>
+      </div>
+      <h2>Receitas:</h2>
+      <ul>
+        {receitas.map((receita, index) => (
+          <li key={index}>{receita.tipo}: {receita.receita}</li>
+        ))}
+      </ul>
+      <h2>Receita Total: {calcularReceitaTotal()}</h2>
+      <h2>Receita Necessária: {calcularReceitaNecessaria()}</h2>
     </div>
   );
 }
