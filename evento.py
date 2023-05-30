@@ -1,23 +1,30 @@
 class Evento:
-    def __init__(self, custo):
-        self.custo = custo
-        self.receitas = {}
 
-    def adicionar_receita(self, nome, preco_unitario, quantidade):
-        self.receitas[nome] = preco_unitario * quantidade
+    def receita(self, custo_festa,  margem_lucro):
+        return custo_festa * ((margem_lucro / 100) + 1)
+    
+    def imposto_total(self, custo):
+        iss = custo * 0.05  # 5% do total
+        icms = custo * 0.18  # 18% do total
+        cofins = custo * 0.03  # 3% do total
+        pis = custo * 0.0065  # 0.65% do total
 
-    def calcular_receita_total(self):
-        return sum(self.receitas.values())
+        return iss + icms + cofins + pis
 
-    def calcular_receita_necessaria(self):
-        receita_total = self.calcular_receita_total()
-        if receita_total >= self.custo:
-            print("A receita total cobre o custo do evento.")
-        else:
-            print("A receita total não cobre o custo do evento. É necessário gerar uma receita adicional de: R${:.2f}".format(self.custo - receita_total))
+    def ingressos(self, quantidade, receita):
+        ingresso = (receita * 0,6)/ quantidade
+        return ingresso + self.imposto_total(ingresso)
 
-    def calcular_impostos(self):
-        receita_total = self.calcular_receita_total()
+    def custo(self, quantidade_pessoas, atracao):
+        quantidade_bombeiros = quantidade_pessoas/500
+        custo_bombeiro = quantidade_bombeiros * 140
+        quantidade_policia = quantidade_pessoas/200
+        custo_policia = quantidade_policia * 200
+        custo_aluguel = quantidade_pessoas/3,5 * 40
+        custo_festa = custo_bombeiro + custo_policia + custo_aluguel + atracao 
+        return custo_aluguel, custo_bombeiro, custo_policia, custo_festa
+    
+    def calcular_impostos(receita_total):
         iss = receita_total * 0.05  # 5% do total
         icms = receita_total * 0.18  # 18% do total
         cofins = receita_total * 0.03  # 3% do total
@@ -32,6 +39,7 @@ class Evento:
 
         print("A receita líquida após a dedução do ISS, ICMS, COFINS e PIS é: R${:.2f}".format(receita_liquida))
 
+    consumo
 # Crie um novo evento com um custo de R$1000
 meu_evento = Evento(1000)
 
