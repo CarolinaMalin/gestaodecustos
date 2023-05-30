@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 
 function App() {
-  const [custo, setCusto] = useState(0);
+  const [custo, setCusto] = useState();
   const [tipo, setTipo] = useState('');
-  const [preco, setPreco] = useState(0);
-  const [quantidade, setQuantidade] = useState(0);
+  const [preco, setPreco] = useState();
+  const [quantidade, setQuantidade] = useState();
   const [receitas, setReceitas] = useState([]);
 
   const adicionarReceita = () => {
@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div>
-      <h1>Calculadora de Receita de Evento</h1>
+      <h1>Eventos.com: Calculamos seu evento!!</h1>
       <label>
         Custo do Evento:
         <input type="number" value={custo} onChange={(e) => setCusto(Number(e.target.value))} />
