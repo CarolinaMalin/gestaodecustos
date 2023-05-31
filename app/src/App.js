@@ -56,23 +56,29 @@ function App() {
 
   return (
     <div style={{ backgroundColor: '#fafafa', color: '#333', fontFamily: 'Arial, sans-serif', padding: '20px' }}>
-      <div style={{ display: 'flex', alignItems: 'center', marginBottom: '20px' }}>
-        <img src="https://media.tenor.com/3dosVyYlXtwAAAAC/light-show-concert.gif" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
-        <h1>Eventos.com</h1>
-      </div>
+      <header style={{ backgroundColor: 'grey', marginBottom: '20px', paddingTop: '20px', paddingBottom: '20px' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          <img src="https://media.tenor.com/3dosVyYlXtwAAAAC/light-show-concert.gif" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
+          <h1>Eventos.com</h1>
+        </div>
+      </header>
       <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
         <label>
           Quantidade de Pessoas:
-          <input type="number" value={quantidadePessoas} onChange={e => setQuantidadePessoas(parseFloat(e.target.value))} />
+           <input type="number" value={quantidadePessoas} onChange={e => setQuantidadePessoas(parseFloat(e.target.value))} />
         </label>
+           <br />        
         <label>
           Custo da Atração:
-          <input type="number" value={custoAtracao} onChange={e => setCustoAtracao(parseFloat(e.target.value))} />
+            <input type="number" value={custoAtracao} onChange={e => setCustoAtracao(parseFloat(e.target.value))} />
+            
         </label>
+           <br />
         <label>
           Margem de Lucro (%):
-          <input type="number" value={margemLucro} onChange={e => setMargemLucro(parseFloat(e.target.value))} />
+            <input type="number" value={margemLucro} onChange={e => setMargemLucro(parseFloat(e.target.value))} />
         </label>
+        <br />  
         <button type="submit" style={{ marginLeft: '10px', backgroundColor: '#007BFF', color: '#fff', border: 'none', borderRadius: '5px', padding: '5px 10px' }}>Calcular</button>
       </form>
       <div>
@@ -86,10 +92,10 @@ function App() {
           <li>COFINS: R${impostos.cofins.toFixed(2)}</li>
           <li>PIS: R${impostos.pis.toFixed(2)}</li>
         </ul>
-        <p>Receita Líquida: R${receitaLiquida.toFixed(2)}</p>
+        <p>: R${receitaLiquida.toFixed(2)}</p>
       </div>
       <div style={{ marginTop: '20px' }}>
-        <img src="https://media.tenor.com/NvnO0AuuzvkAAAAC/dancing-cats.gif" alt="Festa" style={{ width: '100%' }} />
+        <img src="https://media.tenor.com/NvnO0AuuzvkAAAAC/dancing-cats.gif" alt="Festa" style={{ width: '20%' }} />
       </div>
     </div>
   );
