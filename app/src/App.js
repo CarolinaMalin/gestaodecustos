@@ -1,50 +1,53 @@
 import React, { useState } from 'react';
-
 function App() {
   const [quantidadePessoas, setQuantidadePessoas] = useState(0);
   const [custoAtracao, setCustoAtracao] = useState(0);
   const [margemLucro, setMargemLucro] = useState(0);
   const [ingresso, setIngresso] = useState(0);
   const [calculando, setCalculando] = useState(false);
-
   const calcularReceita = (custoFestaTotal, margemLucro) => {
     return custoFestaTotal * ((margemLucro / 100) + 1);
   };
-
   const calcularCustos = (quantidadePessoas, custoAtracao) => {
     const quantidadeBombeiros = quantidadePessoas / 500;
     const custoBombeiro = quantidadeBombeiros * 140;
-
     const quantidadePolicia = quantidadePessoas / 200;
     const custoPolicia = quantidadePolicia * 200;
-
     const custoAluguel = quantidadePessoas / 3.5 * 40;
-
     const custoFestaTotal = custoBombeiro + custoPolicia + custoAluguel + custoAtracao;
-
     return [custoAluguel, custoBombeiro, custoPolicia, custoFestaTotal];
   };
-
   const calcularImpostos = (receitaTotal) => {
     const iss = receitaTotal * 0.05; // 5% do total
     const icms = receitaTotal * 0.18; // 18% do total
     const cofins = receitaTotal * 0.03; // 3% do total
     const pis = receitaTotal * 0.0065; // 0.65% do total
-
     return [iss, icms, cofins, pis];
   };
-
   const calcularReceitaLiquida = (receitaTotal) => {
     const [iss, icms, cofins, pis] = calcularImpostos(receitaTotal);
-
     return receitaTotal - iss - icms - cofins - pis;
   };
-
   const ingressos = (quantidadePessoas, receita) => {
     const ingresso = (receita * 0.6) / quantidadePessoas;
     const impostos = calcularImpostos(ingresso);
     return ingresso + impostos.reduce((total, imposto) => total + imposto, 0);
   };
+
+  const calcularComeres = (receita) => {
+    const comida = (receita * 0.2)
+    const impostos = calcularImpostos(comida);
+    return comida + impostos.reduce((total, imposto) => total + imposto, 0);
+  }
+
+  const calcularConsumos = (quantidadePessoas) => {
+   const refri = 0.4 * quantidadePessoas;
+   const cerveja = 2 * quantidadePessoas;
+   const salgado = 14 * quantidadePessoas;
+
+    return [refri, cerveja, salgado];
+  }
+
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -56,15 +59,16 @@ function App() {
     setIngresso(novoIngresso);
     setCalculando(false);
   };
-
   const [custoAluguel, custoBombeiro, custoPolicia, custoFestaTotal] = calcularCustos(quantidadePessoas, custoAtracao);
   const receita = calcularReceita(custoFestaTotal, margemLucro);
   const [iss, icms, cofins, pis] = calcularImpostos(receita);
   const receitaLiquida = calcularReceitaLiquida(receita);
+  const custoComeres = calcularComeres(receita);
+  const [refri, cerveja, salgado] = calcularConsumos(quantidadePessoas);
 
   return (
         <div style={{ backgroundColor: '#fafafa', color: '#333', fontFamily: 'Arial, sans-serif', padding: '20px' }}>
-      <header style={{ backgroundColor: 'grey', marginBottom: '20px', paddingTop: '20px', paddingBottom: '20px' }}>
+      <header style={{ backgroundColor: '#1671fa', marginBottom: '20px', paddingTop: '20px', paddingBottom: '20px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img src="https://media.tenor.com/3dosVyYlXtwAAAAC/light-show-concert.gif" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
           <h1 style={{ fontFamily: 'Roboto, sans-serif' }}>Eventos.com</h1>
@@ -109,13 +113,19 @@ function App() {
         <h2>Receita:</h2>
         <p>Receita Necessária (incluindo lucro): R${receita.toFixed(2)}</p>
         <p>Valor sugerido do Ingresso: R${ingresso.toFixed(2)}</p>
+        <p>Valor total sugerido para alimentos e bebidas: R${custoComeres.toFixed(2)}</p>
         <p>Receita líquida após a dedução do ISS, ICMS, COFINS e PIS: R${receitaLiquida.toFixed(2)}</p>
       </div>
-      <footer style={{ backgroundColor: 'grey', marginTop: '20px', paddingTop: '20px', paddingBottom: '20px', textAlign: 'center' }}>
+      <div>
+        <h2>Consumo:</h2>
+        <p>Refrigerante: {refri.toFixed(2)}L</p>
+        <p>Cerveja: {cerveja.toFixed(2)} garrafas</p>
+        <p>Salgados: {salgado.toFixed(2)} unidades</p>
+      </div>
+      <footer style={{ backgroundColor: '#1671fa', marginTop: '20px', paddingTop: '20px', paddingBottom: '20px', textAlign: 'center' }}>
         <p>&copy; 2023 Eventos.com. Todos os direitos reservados.</p>
       </footer>
     </div>
   );
 }
-
 export default App;
