@@ -71,7 +71,7 @@ function App() {
       <header style={{ backgroundColor: '#1671fa', marginBottom: '20px', paddingTop: '20px', paddingBottom: '20px' }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <img src="https://media.tenor.com/3dosVyYlXtwAAAAC/light-show-concert.gif" alt="Logo" style={{ height: '50px', marginRight: '15px' }} />
-          <h1 style={{ fontFamily: 'Roboto, sans-serif' }}>Eventos.com</h1>
+          <h1 style={{ fontFamily: 'Roboto, sans-serif' , color: '#fff' }}>Eventos.com</h1>
         </div>
       </header>
       <form onSubmit={handleSubmit} style={{ marginBottom: '20px' }}>
@@ -123,7 +123,7 @@ function App() {
         <p>Salgados: {salgado.toFixed(2)} unidades</p>
       </div>
       <footer style={{ backgroundColor: '#1671fa', marginTop: '20px', paddingTop: '20px', paddingBottom: '20px', textAlign: 'center' }}>
-        <p>&copy; 2023 Eventos.com. Todos os direitos reservados.</p>
+        <p style={{color: '#fff'}}>&copy; 2023 Eventos.com. Todos os direitos reservados.</p>
       </footer>
     </div>
   );
