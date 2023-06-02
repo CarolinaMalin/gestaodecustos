@@ -46,6 +46,21 @@ function App() {
     return ingresso + impostos.reduce((total, imposto) => total + imposto, 0);
   };
 
+  const calcularComeres = (receita) => {
+    const comida = (receita * 0.2)
+    const impostos = calcularImpostos(comida);
+    return comida + impostos.reduce((total, imposto) => total + imposto, 0);
+  }
+
+  const calcularConsumos = (quantidadePessoas) => {
+    refri = 0.4 * quantidadePessoas;
+    cerveja = 2 * quantidadePessoas;
+    salgado = 14 * quantidadePessoas;
+
+    return [refri, cerveja, salgado];
+  }
+
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setCalculando(true);
@@ -61,6 +76,8 @@ function App() {
   const receita = calcularReceita(custoFestaTotal, margemLucro);
   const [iss, icms, cofins, pis] = calcularImpostos(receita);
   const receitaLiquida = calcularReceitaLiquida(receita);
+  const custoComeres = calcularComeres(receita);
+  const [refri, cerveja, salgado] = calcularConsumos(quantidadePessoas);
 
   return (
         <div style={{ backgroundColor: '#fafafa', color: '#333', fontFamily: 'Arial, sans-serif', padding: '20px' }}>
@@ -109,7 +126,14 @@ function App() {
         <h2>Receita:</h2>
         <p>Receita Necessária (incluindo lucro): R${receita.toFixed(2)}</p>
         <p>Valor sugerido do Ingresso: R${ingresso.toFixed(2)}</p>
+        <p>Valor total sugerido para alimentos e bebidas: R${custoComeres.toFixed(2)}</p>
         <p>Receita líquida após a dedução do ISS, ICMS, COFINS e PIS: R${receitaLiquida.toFixed(2)}</p>
+      </div>
+      <div>
+        <h2>Consumo:</h2>
+        <p>Refrigerante: {refri.toFixed(2)}L</p>
+        <p>Cerveja: {cerveja.toFixed(2)} garrafas</p>
+        <p>Salgados: {salgado.toFixed(2)} unidades</p>
       </div>
       <footer style={{ backgroundColor: 'grey', marginTop: '20px', paddingTop: '20px', paddingBottom: '20px', textAlign: 'center' }}>
         <p>&copy; 2023 Eventos.com. Todos os direitos reservados.</p>
