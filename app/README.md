@@ -1,3 +1,17 @@
+Grupo:
+Carolina Vasconcelos
+Eduardo Rezende
+Isadora Vasconcelos
+João Antonio 
+João Carlos
+Liubliana Stolz
+Lucca Borborema
+Vinícius Lima
+Vinícius Nunes
+Vinícius Tavares
+
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -68,3 +82,35 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+# Evento
+
+Este código Python é uma aplicação que auxilia na organização e gestão financeira de um evento.
+
+## Classe Evento
+
+A classe `Evento` possui métodos que realizam os seguintes cálculos:
+
+- `receita(self, custo_festa,  margem_lucro)`: calcula a receita necessária para a festa considerando a margem de lucro desejada.
+- `imposto_total(self, custo)`: calcula o total de impostos que serão aplicados sobre um determinado custo.
+- `ingressos(self, quantidade_pessoas, receita)`: determina o valor do ingresso considerando a receita necessária e a quantidade de pessoas esperadas.
+- `custo(self, quantidade_pessoas, atracao)`: calcula o custo total do evento, considerando a quantidade de pessoas, o custo dos bombeiros, da polícia, o aluguel do local e o custo da atração principal.
+- `calcular_impostos(self, receita_total)`: calcula os valores individuais de cada imposto aplicado sobre a receita total do evento.
+- `calcular_receita_liquida(self, receita_total)`: calcula a receita líquida após a dedução dos impostos ISS, ICMS, COFINS e PIS.
+
+## Exemplo de Uso
+
+O script abaixo da classe `Evento` cria um novo evento, define o custo da atração e a quantidade de pessoas esperadas. Em seguida, calcula o custo total da festa, a receita necessária, o valor do ingresso, os impostos a serem pagos e a receita líquida do evento. Os resultados são exibidos no terminal.
+
+```python
+# Crie um novo evento
+meu_evento = Evento()
+
+# Cálculo de custos
+quantidade_pessoas = 2000
+custo_atracao = 10000  # Custo da atração (música, palestra, etc.)
+...
+# Cálculo da receita líquida
+meu_evento.calcular_receita_liquida(receita)
+```

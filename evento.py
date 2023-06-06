@@ -10,8 +10,8 @@ class Evento:
         pis = custo * 0.0065  # 0.65% do total
         return iss + icms + cofins + pis
 
-    def ingressos(self, quantidade, receita):
-        ingresso = (receita * 0.6)/ quantidade
+    def ingressos(self, quantidade_pessoas, receita):
+        ingresso = (receita * 0.6)/ quantidade_pessoas
         return ingresso + self.imposto_total(ingresso)
 
     def custo(self, quantidade_pessoas, atracao):
